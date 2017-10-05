@@ -1,0 +1,212 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf830
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 pragma solidity ^0.4.0;\
+\
+/**\
+ * @title SafeMath\
+ * @dev Math operations with safety checks that throw on error\
+ */\
+library SafeMath \{\
+  function safeMul(uint256 a, uint256 b) internal constant returns (uint256) \{\
+    uint256 c = a * b;\
+    assert(a == 0 || c / a == b);\
+    return c;\
+  \}\
+\
+  function safeDiv(uint256 a, uint256 b) internal constant returns (uint256) \{\
+    // assert(b > 0); // Solidity automatically throws when dividing by 0\
+    uint256 c = a / b;\
+    // assert(a == b * c + a % b); // There is no case in which this doesn't hold\
+    return c;\
+  \}\
+\
+  function safeSub(uint256 a, uint256 b) internal constant returns (uint256) \{\
+    assert(b <= a);\
+    return a - b;\
+  \}\
+\
+  function safeAdd(uint256 a, uint256 b) internal constant returns (uint256) \{\
+    uint256 c = a + b;\
+    assert(c >= a);\
+    return c;\
+  \}\
+\}\
+\
+\
+contract Owned \{\
+    address public owner;\
+    \
+    function Owned() public \{\
+        owner = msg.sender;\
+    \}\
+    \
+    //  modifiers\
+    modifier onlyOwner() \{\
+        require(msg.sender == owner);\
+        _;\
+    \}\
+    \
+    function transferOwnership(address newOwner) onlyOwner public \{\
+        owner = newOwner;\
+    \}\
+\}\
+\
+contract HelloToken is Owned \{\
+    uint public supply;\
+    string public name;\
+    uint8 public decimals;\
+    string public symbol;\
+    string public version;\
+    \
+    //  prices in wei. One ether is 1000 000 000 000 000 000 wei\
+    uint256 public sellPrice;\
+    uint256 public buyPrice;\
+    \
+    uint minBalanceForAccounts;\
+    \
+    mapping (address => uint256) public balances;\
+    mapping (address => bool) public transferApprovals;\
+    mapping (address => mapping (address => uint256)) public approvals;\
+    \
+    //  Events\
+    event EventTransfer(address indexed _from, address indexed _to, uint256 _value);\
+    event EventTransferApproval(address _target, bool _freeze);\
+    event Approval(address _from, address _spender, uint256 amount);\
+    \
+    function HelloToken(uint initialSupply, string _name, string _symbol, uint8 _decimals, address centralMinter) public \{\
+        balances[this] = initialSupply;\
+        \
+        name = _name;\
+        symbol = _symbol;\
+        decimals = _decimals;\
+        supply = initialSupply;\
+        version = "1.0";\
+        \
+        buyPrice = 1000000000000000000;\
+        sellPrice = 1111111111111111111;\
+        \
+        minBalanceForAccounts = 1 finney;\
+        \
+        if (centralMinter != 0x0) \{\
+            owner = centralMinter; \
+        \}\
+        approveTransferAccount(msg.sender, true);\
+        EventTransferApproval(msg.sender, true);\
+    \}\
+    \
+    function() public payable \{\
+        \
+    \}\
+    \
+    function _transfer(address _from, address _to, uint256 _value) internal returns(bool) \{\
+        require(_to != 0x0);\
+        \
+        require(transferApprovals[_from]);\
+        require(balances[_from] >= _value);\
+        require(balances[_to] + _value >= balances[_to]);\
+        \
+        if (msg.sender.balance < minBalanceForAccounts) \{\
+            uint256 etherAmountToSell = minBalanceForAccounts - msg.sender.balance;\
+            uint256 tokenAmountToSell = etherAmountToSell / sellPrice;\
+            sell(tokenAmountToSell);\
+        \}\
+         \
+        balances[_from] = SafeMath.safeSub(balances[_from], _value);\
+        balances[_to] = SafeMath.safeAdd(balances[_to], _value);\
+        EventTransfer(_from, _to, _value );\
+        \
+        return true;\
+    \}\
+    \
+    function mintToken(address target, uint256 mintedAmount) onlyOwner public \{\
+        require(target != 0x0);\
+        \
+        balances[target] += mintedAmount;\
+        supply += mintedAmount;\
+        \
+        EventTransfer(0, owner, mintedAmount);\
+        EventTransfer(owner, target, mintedAmount);\
+    \}\
+    \
+    function approveTransferAccount(address _target, bool _approve) onlyOwner public \{\
+        transferApprovals[_target] = _approve;\
+        EventTransferApproval(_target, _approve);\
+    \}\
+    \
+    //  ERC 20\
+    function totalSupply() constant public returns (uint) \{\
+      return supply;\
+    \}\
+    \
+    function balanceOf( address who ) constant public returns (uint) \{\
+      return balances[who];\
+    \}\
+    \
+    function transfer( address to, uint value) public returns (bool) \{\
+        bool result = _transfer(msg.sender, to, value);\
+        return result;\
+    \}\
+    \
+    function transferFrom( address from, address to, uint value) public returns (bool) \{\
+        uint256 approvedAmount = approvals[from][msg.sender];\
+        require(approvedAmount > 0);\
+      \
+        bool result = _transfer(msg.sender, to, value);\
+        return result;\
+    \}\
+    \
+    function approve(address spender, uint value) public returns (bool) \{\
+      approvals[msg.sender][spender] = value;\
+      Approval( msg.sender, spender, value );\
+      return true;\
+    \}\
+    \
+    function allowance(address owner, address spender) constant public returns (uint) \{\
+      return approvals[owner][spender];\
+    \}\
+    \
+    // update prices, buy, sell\
+    function updatePrices(uint _sellPrice, uint _buyPrice) public onlyOwner \{\
+        sellPrice = _sellPrice;\
+        buyPrice = _buyPrice;\
+    \}\
+    \
+    function buy() payable public returns(uint amount) \{\
+        amount = msg.value / buyPrice;\
+        require(balances[this] >= amount);\
+        \
+        balances[msg.sender] += amount;\
+        balances[this] -= amount;\
+        \
+        EventTransfer(this, msg.sender, amount);\
+        return amount;\
+    \}\
+    \
+    function sell(uint amount) public returns(uint revenue) \{\
+        require(balances[msg.sender] >= amount);\
+        \
+        balances[this] += amount;\
+        balances[msg.sender] -= amount;\
+        \
+        revenue = amount * sellPrice;\
+        require(msg.sender.send(revenue));\
+        \
+        EventTransfer(msg.sender, this, amount);\
+        return revenue;\
+    \}\
+    \
+    function updateMinBalanceForAccounts(uint _minBalance) public onlyOwner \{\
+        minBalanceForAccounts = _minBalance * 1 finney;\
+    \}\
+    \
+    //  give additional reward in my token for every mined ether block\
+    \
+    function giveReward() private \{\
+        balances[block.coinbase] += 1;\
+    \}\
+\}}
