@@ -1,0 +1,126 @@
+{
+  "contract_name": "Calculator",
+  "abi": [
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "num",
+          "type": "uint256"
+        }
+      ],
+      "name": "addToNumber",
+      "outputs": [],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "anyString",
+      "outputs": [
+        {
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [],
+      "name": "double",
+      "outputs": [],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "num",
+          "type": "uint256"
+        }
+      ],
+      "name": "multiplyWithNumber",
+      "outputs": [],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "getResult",
+      "outputs": [
+        {
+          "name": "num",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "num",
+          "type": "uint256"
+        }
+      ],
+      "name": "substractFromNumber",
+      "outputs": [],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "num",
+          "type": "uint256"
+        }
+      ],
+      "name": "divideByNumber",
+      "outputs": [],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [],
+      "name": "half",
+      "outputs": [],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "name": "initial",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "type": "constructor"
+    }
+  ],
+  "unlinked_binary": "0x6060604052341561000f57600080fd5b6040516020806102f3833981016040528080519150505b60008190555b505b6102b68061003d6000396000f3006060604052361561008b5763ffffffff7c010000000000000000000000000000000000000000000000000000000060003504166306ccd23081146100905780637721e549146100a85780638fdb718914610133578063b4679b0614610148578063de29278914610160578063ef455b3c14610185578063f5cb911d1461019d578063f6a6462c146101b5575b600080fd5b341561009b57600080fd5b6100a66004356101ca565b005b34156100b357600080fd5b6100bb6101d6565b60405160208082528190810183818151815260200191508051906020019080838360005b838110156100f85780820151818401525b6020016100df565b50505050905090810190601f1680156101255780820380516001836020036101000a031916815260200191505b509250505060405180910390f35b341561013e57600080fd5b6100a6610218565b005b341561015357600080fd5b6100a6600435610224565b005b341561016b57600080fd5b610173610230565b60405190815260200160405180910390f35b341561019057600080fd5b6100a6600435610237565b005b34156101a857600080fd5b6100a6600435610244565b005b34156101c057600080fd5b6100a661025e565b005b60008054820190555b50565b6101de610278565b60408051908101604052600e81527f4865726520697320737472696e67000000000000000000000000000000000000602082015290505b90565b6000805460020290555b565b60008054820290555b50565b6000545b90565b6000805482900390555b50565b8060008082825481151561025457fe5b0490915550505b50565b600260008082825481151561026f57fe5b0490915550505b565b602060405190810160405260008152905600a165627a7a723058200c4e60f62dd29327607ab92625a657b5952e5b8be89ae94225d401a18bb375100029",
+  "networks": {
+    "1508066006233": {
+      "events": {},
+      "links": {},
+      "address": "0x9663e2b0b6298f2d4b18c66ae4105b420ae7b564",
+      "updated_at": 1508066281818
+    },
+    "1508141573279": {
+      "events": {},
+      "links": {},
+      "address": "0x805b4fcf6f40542b07f355ec0ec576b3e8a8f732",
+      "updated_at": 1508171306995
+    }
+  },
+  "schema_version": "0.0.5",
+  "updated_at": 1508171306995
+}
