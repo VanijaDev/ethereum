@@ -3,6 +3,7 @@ pragma solidity ^0.4.4;
 contract MultiNumberBettingV1 {
 
   uint8[] private argArray;
+  uint8 private maxValidGuessValue = 10;
 
   uint8 private loserCount;
   uint8 private winnerCount;
@@ -15,7 +16,7 @@ contract MultiNumberBettingV1 {
 
   function() public payable {  }
 
-  function guess(uint8 _guess) public returns(bool) {
+  function guess(uint8 _guess) public guessIsValidValue(_guess) returns(bool) {
     //  increase totalGuessAmount
     guessOccured();
 
@@ -24,6 +25,7 @@ contract MultiNumberBettingV1 {
     for (uint8 i = 0; i < length; i ++) {
       if (_guess == argArray[i]) {
         winnerCount += 1;
+        require(winnerCount > 0);
         return true; 
       }
     }
@@ -46,6 +48,12 @@ contract MultiNumberBettingV1 {
 //  private helpers
   function guessOccured() private {
     totalGuessAmount += 1;
+  }
+
+  //  modifiers
+  modifier guessIsValidValue(uint _guess) {
+    require(_guess < maxValidGuessValue);
+    _;
   }
 
 }
