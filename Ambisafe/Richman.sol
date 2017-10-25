@@ -99,17 +99,25 @@ contract Richman {
     function updateAddressAsBlacklisted(address _addr, bool isBlacklisted) public
         isOwner(msg.sender)
         isValidAddress(_addr) {
-            blacklist[_addr] = isBlacklisted;
+            if (isBlacklisted) {
+                blacklist[_addr] = true;
+            } else {
+                delete(blacklist[_addr]);
+            }
     }
     
     //  Sender wants to borrow.
     function lent(uint _amount) public 
-        notOwner(msg.sender)
+        // notOwner(msg.sender)
         notInBlacklist(msg.sender)
         amountIsAvailable(_amount) 
         checkedForLentOverflow(msg.sender, _amount)
         moreThanZero(_amount)
         returns(bool success) {
+            if (msg.sender == owner) {
+                revert();
+            }
+            
             freeTokens -= _amount;
             ledger[msg.sender] += _amount;
             
