@@ -50,8 +50,18 @@ contract Richman {
         _;
     }
     
+    modifier moreThanZero(uint _amount) {
+        require(_amount > 0);
+        _;
+    }
+    
     modifier notInBlacklist(address _addr) {
         require(!blacklist[_addr]);
+        _;
+    }
+    
+    modifier isValidAddress(address _addr) {
+        require(_addr != 0x0);
         _;
     }
     
@@ -86,12 +96,19 @@ contract Richman {
         LogTotalSupplyUpdateStatus(true);
     }
     
+    function updateAddressAsBlacklisted(address _addr, bool isBlacklisted) public
+        isOwner(msg.sender)
+        isValidAddress(_addr) {
+            blacklist[_addr] = isBlacklisted;
+    }
+    
     //  Sender wants to borrow.
     function lent(uint _amount) public 
         notOwner(msg.sender)
         notInBlacklist(msg.sender)
         amountIsAvailable(_amount) 
-        checkedForLentOverflow(msg.sender, _amount) 
+        checkedForLentOverflow(msg.sender, _amount)
+        moreThanZero(_amount)
         returns(bool success) {
             freeTokens -= _amount;
             ledger[msg.sender] += _amount;
@@ -104,7 +121,8 @@ contract Richman {
     function payBack(uint _amount) public 
         notOwner(msg.sender)
         hasBorrowedTokens(msg.sender) 
-        checkedForPayBackOverflow(msg.sender, _amount) 
+        // checkedForPayBackOverflow(msg.sender, _amount) 
+        moreThanZero(_amount)
         returns(bool success) {
             ledger[msg.sender] -= _amount;
             freeTokens += _amount;
