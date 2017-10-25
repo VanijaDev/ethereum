@@ -72,7 +72,7 @@ contract Richman {
     event LogTotalSupplyUpdateStatus(bool);
     
     
-    function Richman(uint _totalSupply) public {
+    function Richman(uint _totalSupply) public payable {
         owner = msg.sender;
         
         totalSupply = _totalSupply;
