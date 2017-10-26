@@ -17,19 +17,6 @@
     {
       "constant": true,
       "inputs": [],
-      "name": "minutesSinceLastWinning111",
-      "outputs": [
-        {
-          "name": "",
-          "type": "uint256"
-        }
-      ],
-      "payable": false,
-      "type": "function"
-    },
-    {
-      "constant": true,
-      "inputs": [],
       "name": "minutesSinceLastWinning",
       "outputs": [
         {
@@ -65,6 +52,23 @@
         {
           "name": "winnerGuessedAt",
           "type": "uint256"
+        },
+        {
+          "name": "etherProvided",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "MIN_BET",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
         }
       ],
       "payable": false,
@@ -74,6 +78,19 @@
       "constant": true,
       "inputs": [],
       "name": "daysSinceLastWinning",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "MAX_BET",
       "outputs": [
         {
           "name": "",
@@ -115,7 +132,7 @@
           "type": "bool"
         }
       ],
-      "payable": false,
+      "payable": true,
       "type": "function"
     },
     {
@@ -134,6 +151,10 @@
         {
           "name": "winnerGuessedAt",
           "type": "uint256"
+        },
+        {
+          "name": "etherProvided",
+          "type": "uint256"
         }
       ],
       "payable": false,
@@ -143,5 +164,5 @@
   "unlinked_binary": "0x",
   "networks": {},
   "schema_version": "0.0.5",
-  "updated_at": 1508960958478
+  "updated_at": 1509047694607
 }
