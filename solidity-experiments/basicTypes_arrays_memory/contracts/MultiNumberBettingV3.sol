@@ -15,7 +15,6 @@ contract MultiNumberBettingV3 {
   uint8 public winnerCount;
   uint public lastWinnerAt; //  timestamp
 
-// TEST
   address public lastWinnerAddress;
 
   function MultiNumberBettingV3(uint8 _arg0, uint8 _arg1, uint8 _arg2) public payable {
@@ -47,7 +46,6 @@ contract MultiNumberBettingV3 {
     return bytes(lastWinnerName).length > 0 ? lastWinnerName : "***";
   }
 
-// TEST
   //  winning time
   function daysSinceLastWinning() public constant returns(uint) {
     return timeSinceLastWinner() * 1 days;
