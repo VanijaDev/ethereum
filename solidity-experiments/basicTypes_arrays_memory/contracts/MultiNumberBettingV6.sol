@@ -4,7 +4,7 @@
 
 pragma solidity ^0.4.4;
 
-import "./MultiNumberBettingAbstractV1.sol";
+import "./MultiNumberBettingAbstractV2.sol";
 
 contract MultiNumberBettingV6 is MultiNumberBettingAbstractV2 {
   
@@ -30,13 +30,19 @@ contract MultiNumberBettingV6 is MultiNumberBettingAbstractV2 {
   address[] private pendingPrizePayoutAddresses;
 
   function MultiNumberBettingV6(uint8 _arg0, uint8 _arg1, uint8 _arg2) public payable {
+    owner = msg.sender;
     argArray = [_arg0, _arg1, _arg2];
   }
 
   function() public payable {  }
 
+  function test(uint8 _g, string _n) public payable returns(uint) {
+    require(msg.value >= (2 * MAX_BET));
+    return 777;
+  }
+
   // MultiNumberBettingAbstractV1 methods
-  function guess(uint8 _guess, string _name) public payable returns(bool) {
+  function guess(uint8 _guess, string _name) public payable enoughFundsForGuess(msg.value) returns(bool) {
     sendPendingPrizePayouts();
 
     require(_guess < MAX_VALID_GUESS_VALUE);
@@ -103,6 +109,12 @@ contract MultiNumberBettingV6 is MultiNumberBettingAbstractV2 {
 
   function minutesSinceLastWinning() public constant returns(uint) {
     return timeSinceLastWinner() * 1 minutes;
+  }
+
+  function ownerWithdraw(uint amount) public constant onlyOwner() {
+    require((this.balance - amount) >= MAX_BET * 2);
+
+    msg.sender.transfer(this.balance);
   }
 
 //  private helpers
