@@ -17,6 +17,10 @@ contract MultiNumberBettingAbstractV2 {
     _;
   }
 
+  //  Events
+  event LogWinningBet(address _addr, string _name, uint _amount);
+  event LogLosingBet(address _addr, string _name, uint _amount);
+
   function guess(uint8 _guess, string _name) public payable returns(bool);
   function totalGuesses() public constant returns(uint guesses);
   function getLastWinnerInfo() public constant returns(address winnerAddr, string winnerName, uint winnerGuessedAt, uint etherProvided);

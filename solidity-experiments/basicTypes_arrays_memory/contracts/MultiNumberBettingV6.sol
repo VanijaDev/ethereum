@@ -36,11 +36,6 @@ contract MultiNumberBettingV6 is MultiNumberBettingAbstractV2 {
 
   function() public payable {  }
 
-  function test(uint8 _g, string _n) public payable returns(uint) {
-    require(msg.value >= (2 * MAX_BET));
-    return 777;
-  }
-
   // MultiNumberBettingAbstractV1 methods
   function guess(uint8 _guess, string _name) public payable enoughFundsForGuess(msg.value) returns(bool) {
     sendPendingPrizePayouts();
@@ -60,7 +55,7 @@ contract MultiNumberBettingV6 is MultiNumberBettingAbstractV2 {
       }
     }
 
-    guessFailed();
+    guessFailed(msg.sender, _name, msg.value);
     return false; 
   }
 
@@ -133,12 +128,16 @@ contract MultiNumberBettingV6 is MultiNumberBettingAbstractV2 {
     lastWinnerAddress = winner.addr;
     winners[_addr] = winner;
     sendEtherPrize(winner);
+
+    LogWinningBet(_addr, _name, _etherProvided);
   }
 
-  function guessFailed() private {
+  function guessFailed(address _addr, string _name, uint _etherProvided) private {
     loserCount += 1;
 
     require(loserCount > 0);
+
+    LogLosingBet(_addr, _name, _etherProvided);
   }
   
   function timeSinceLastWinner() private constant returns(uint) {
