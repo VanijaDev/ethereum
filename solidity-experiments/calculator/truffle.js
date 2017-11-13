@@ -4,6 +4,7 @@ module.exports = {
       host: "localhost",
       port: 8545,
       network_id: "*" // Match any network id
+      // Options: gas, gasPrice, from
     },
 
     QA: {
@@ -12,7 +13,7 @@ module.exports = {
       network_id: "3" // ROPSTEN
       // Options: gas, gasPrice, from
     },
-    
+
     PRODUCTION: {
       host: "localhost",
       port: 8545,

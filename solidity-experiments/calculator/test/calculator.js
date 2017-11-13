@@ -10,7 +10,9 @@ contract('Calculator', function(accounts) {
     var calculator;
 
     it("Test initial value.", function() {
+        return Calculator.deployed.then(function(inst) {
 
+        });
       return Calculator.deployed().then(function(instance) {
         calculator = instance;
 
