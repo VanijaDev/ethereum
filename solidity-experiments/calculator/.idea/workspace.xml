@@ -18,7 +18,7 @@
         <entry file="file://$PROJECT_DIR$/contracts/Calculator.sol">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="90">
-              <caret line="6" column="37" lean-forward="true" selection-start-line="6" selection-start-column="37" selection-end-line="6" selection-end-column="37" />
+              <caret line="6" column="37" lean-forward="false" selection-start-line="6" selection-start-column="37" selection-end-line="6" selection-end-column="37" />
               <folding />
             </state>
           </provider>
@@ -120,9 +120,9 @@
           <select />
         </subPane>
       </pane>
-      <pane id="AndroidView" />
-      <pane id="Scratches" />
       <pane id="PackagesPane" />
+      <pane id="Scratches" />
+      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -326,6 +326,14 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/contracts/Calculator.sol">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="37" lean-forward="true" selection-start-line="6" selection-start-column="37" selection-end-line="6" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/contracts/Calculator.sol">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="420">
           <caret line="28" column="3" lean-forward="false" selection-start-line="28" selection-start-column="3" selection-end-line="28" selection-end-column="3" />
           <folding />
@@ -396,9 +404,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1508159977000" expanded="true" signature="93:132" ph="{...}" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -444,42 +449,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1508171306000" expanded="true" signature="44:1949" ph="[...]" />
-            <marker date="1508171306000" expanded="true" signature="50:281" ph="{&quot;name&quot;: &quot;addToNumber&quot;...}" />
-            <marker date="1508171306000" expanded="true" signature="93:175" ph="[...]" />
-            <marker date="1508171306000" expanded="true" signature="103:167" ph="{&quot;name&quot;: &quot;num&quot;...}" />
-            <marker date="1508171306000" expanded="true" signature="287:511" ph="{&quot;name&quot;: &quot;anyString&quot;...}" />
-            <marker date="1508171306000" expanded="true" signature="377:455" ph="[...]" />
-            <marker date="1508171306000" expanded="true" signature="387:447" ph="{&quot;name&quot;: &quot;&quot;...}" />
-            <marker date="1508171306000" expanded="true" signature="517:663" ph="{&quot;name&quot;: &quot;double&quot;...}" />
-            <marker date="1508171306000" expanded="true" signature="669:907" ph="{&quot;name&quot;: &quot;multiplyWithNumber&quot;...}" />
-            <marker date="1508171306000" expanded="true" signature="712:794" ph="[...]" />
-            <marker date="1508171306000" expanded="true" signature="722:786" ph="{&quot;name&quot;: &quot;num&quot;...}" />
-            <marker date="1508171306000" expanded="true" signature="913:1141" ph="{&quot;name&quot;: &quot;getResult&quot;...}" />
-            <marker date="1508171306000" expanded="true" signature="1003:1085" ph="[...]" />
-            <marker date="1508171306000" expanded="true" signature="1013:1077" ph="{&quot;name&quot;: &quot;num&quot;...}" />
-            <marker date="1508171306000" expanded="true" signature="1147:1386" ph="{&quot;name&quot;: &quot;substractFromNumber&quot;...}" />
-            <marker date="1508171306000" expanded="true" signature="1190:1272" ph="[...]" />
-            <marker date="1508171306000" expanded="true" signature="1200:1264" ph="{&quot;name&quot;: &quot;num&quot;...}" />
-            <marker date="1508171306000" expanded="true" signature="1392:1626" ph="{&quot;name&quot;: &quot;divideByNumber&quot;...}" />
-            <marker date="1508171306000" expanded="true" signature="1435:1517" ph="[...]" />
-            <marker date="1508171306000" expanded="true" signature="1445:1509" ph="{&quot;name&quot;: &quot;num&quot;...}" />
-            <marker date="1508171306000" expanded="true" signature="1632:1776" ph="{&quot;name&quot;: &quot;half&quot;...}" />
-            <marker date="1508171306000" expanded="true" signature="1782:1945" ph="{&quot;payable&quot;: false...}" />
-            <marker date="1508171306000" expanded="true" signature="1800:1886" ph="[...]" />
-            <marker date="1508171306000" expanded="true" signature="1810:1878" ph="{&quot;name&quot;: &quot;initial&quot;...}" />
-            <marker date="1508171306000" expanded="true" signature="3502:3838" ph="{...}" />
-            <marker date="1508171306000" expanded="true" signature="3525:3668" ph="{&quot;address&quot;: &quot;0x9663e2b0b6298f2d4b18c66ae4105b420ae7b564&quot;...}" />
-            <marker date="1508171306000" expanded="true" signature="3691:3834" ph="{&quot;address&quot;: &quot;0x805b4fcf6f40542b07f355ec0ec576b3e8a8f732&quot;...}" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/contracts/Calculator.sol">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
-          <caret line="6" column="37" lean-forward="true" selection-start-line="6" selection-start-column="37" selection-end-line="6" selection-end-column="37" />
+          <caret line="6" column="37" lean-forward="false" selection-start-line="6" selection-start-column="37" selection-end-line="6" selection-end-column="37" />
           <folding />
         </state>
       </provider>
