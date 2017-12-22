@@ -34,8 +34,6 @@ library SafeMath {
     return a < b ? a : b;
   }
   function assert(bool assertion) internal pure {
-    if (!assertion) {
-      throw;
-    }
+    require(assertion);
   }
 }
